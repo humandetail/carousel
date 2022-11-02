@@ -21,7 +21,7 @@ class Carousel {
 
   #index: number = 0
   #transitiondelay = 200
-  #timer: number | null = null
+  #timer: any = null
   #startX: number = 0
 
   constructor (el: string | HTMLElement, opts: CarouselOptions = {}) {
@@ -56,7 +56,7 @@ class Carousel {
   }
 
   get delay () {
-    return Math.max(50, this.options.delay)
+    return Math.max(50, this.options.delay || 50)
   }
 
   get draggable () {
@@ -118,8 +118,8 @@ class Carousel {
       this.slides.push(this.slides[0].cloneNode() as HTMLElement)
       this.slides.unshift(last!)
 
-      oWrapper.insertBefore(first, oWrapper.firstElementChild)
-      oWrapper.appendChild(last)
+      oWrapper.insertBefore(last, oWrapper.firstElementChild)
+      oWrapper.appendChild(first)
     }
 
     let indicators = ''
