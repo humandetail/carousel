@@ -42,9 +42,9 @@ class Carousel {
 
   get wrapperWidth () {
     const width = this.slides.length * this.options.width
-    return this.isLoop
+    return Math.ceil(this.isLoop
       ? width + this.options.width
-      : width
+      : width)
   }
 
   get isLoop () {
@@ -102,8 +102,8 @@ class Carousel {
     if (!opts.width || !opts.height) {
       const { width, height } = this.slides[0].getBoundingClientRect()
 
-      this.options.width = width
-      this.options.height = height
+      this.options.width = Math.ceil(width)
+      this.options.height = Math.ceil(height)
     }
 
     if (opts.loop) {
